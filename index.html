@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>NextGen PC</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
+  <style>
+    body { background-color: #0e0e0e; color: #ffffff; }
+    header, footer { background-color: #1a1a1a; padding: 1rem; }
+    img { max-width: 100%; border-radius: 8px; }
+    figure { background-color: #222; padding: 1rem; border-radius: 8px; }
+    form input, form button, select { background-color: #333; color: white; }
+    .configurator { background-color: #1a1a1a; padding: 2rem; border-radius: 8px; margin-top: 2rem; }
+    #warning { color: #ff6b6b; margin-top: 1rem; }
+    #confirmation { color: #90ee90; margin-top: 1rem; }
+  </style>
+</head>
+<body>
+  <nav class="container-fluid">
+    <ul><li><strong>NextGen PC</strong></li></ul>
+    <ul>
+      <li><a href="#builds">Custom Builds</a></li>
+      <li><a href="#prebuilt">Pre-Built PCs</a></li>
+      <li><a href="#configurator">Configurator</a></li>
+      <li><a href="#contact" role="button">Contact</a></li>
+    </ul>
+  </nav>
+
+  <main class="container">
+    <div class="grid">
+      <section>
+        <hgroup>
+          <h2>Welcome to NextGen PC</h2>
+          <h3>Your hub for high-performance computers</h3>
+        </hgroup>
+        <p>We specialize in building top-tier PCs for gamers, streamers, and professionals. Choose from our custom builds or pre-configured systems to get started today.</p>
+        <figure>
+          <img src="https://source.unsplash.com/featured/?gaming,computer" alt="Custom PC">
+          <figcaption><a href="#builds">Explore Custom Builds</a></figcaption>
+        </figure>
+      </section>
+
+      <section id="builds">
+        <h3>Custom PC Builds</h3>
+        <p>Tailored systems built to your exact needs and budget. From RGB-heavy gaming rigs to minimalist productivity setups.</p>
+      </section>
+
+      <section id="prebuilt">
+        <h3>Pre-Built Systems</h3>
+        <p>Ready-to-go PCs curated for performance and reliability. Perfect for users who need power without the wait.</p>
+        <figure>
+          <img src="https://source.unsplash.com/featured/?computer,setup" alt="Pre-built PC">
+          <figcaption><a href="#">View Pre-Built Options</a></figcaption>
+        </figure>
+      </section>
+
+      <section id="configurator" class="configurator">
+        <h3>Build Your PC</h3>
+        <form id="pcForm" class="grid">
+          <label for="cpu">CPU</label>
+          <select id="cpu" name="cpu">
+            <option value="Intel i5" data-price="180">Intel i5 - $180</option>
+            <option value="Intel i7" data-price="250">Intel i7 - $250</option>
+            <option value="AMD Ryzen 5" data-price="160">AMD Ryzen 5 - $160</option>
+            <option value="AMD Ryzen 7" data-price="240">AMD Ryzen 7 - $240</option>
+          </select>
+
+          <label for="gpu">GPU</label>
+          <select id="gpu" name="gpu">
+            <option value="NVIDIA RTX 3060" data-price="300">NVIDIA RTX 3060 - $300</option>
+            <option value="NVIDIA RTX 4070" data-price="550">NVIDIA RTX 4070 - $550</option>
+            <option value="AMD RX 6600" data-price="280">AMD RX 6600 - $280</option>
+            <option value="AMD RX 7800" data-price="500">AMD RX 7800 - $500</option>
+          </select>
+
+          <label for="ram">RAM</label>
+          <select id="ram" name="ram">
+            <option value="16GB DDR4" data-price="60">16GB DDR4 - $60</option>
+            <option value="32GB DDR4" data-price="100">32GB DDR4 - $100</option>
+            <option value="32GB DDR5" data-price="130">32GB DDR5 - $130</option>
+            <option value="64GB DDR5" data-price="220">64GB DDR5 - $220</option>
+          </select>
+
+          <label for="storage">Storage</label>
+          <select id="storage" name="storage">
+            <option value="512GB SSD" data-price="50">512GB SSD - $50</option>
+            <option value="1TB SSD" data-price="80">1TB SSD - $80</option>
+            <option value="2TB SSD" data-price="140">2TB SSD - $140</option>
+            <option value="1TB SSD + 2TB HDD" data-price="160">1TB SSD + 2TB HDD - $160</option>
+          </select>
+
+          <h4>Your Info</h4>
+          <input type="text" id="userName" placeholder="Your Name" required>
+          <input type="email" id="userEmail" placeholder="Your Email" required>
+
+          <button type="submit" onclick="event.preventDefault(); showSummary()">Submit Configuration</button>
+        </form>
+        <div id="summary"></div>
+        <div id="warning"></div>
+        <div id="confirmation"></div>
+      </section>
+    </div>
+  </main>
+
+  <section aria-label="Subscribe example">
+    <div class="container">
+      <article>
+        <hgroup>
+          <h2>Subscribe</h2>
+          <h3>Get the latest builds and deals</h3>
+        </hgroup>
+        <form class="grid">
+          <input type="text" id="firstname" name="firstname" placeholder="First name" aria-label="First name" required>
+          <input type="email" id="email" name="email" placeholder="Email address" aria-label="Email address" required>
+          <button type="submit" onclick="event.preventDefault()">Subscribe</button>
+        </form>
+      </article>
+    </div>
+  </section>
+
+  <footer class="container" id="contact">
+    <small>
+      <a href="#">Privacy Policy</a> • <a href="#">Terms</a><br>
+      Contact us at: info@nextgenpc.com • 123 Tech Street, Silicon Valley, CA<br>
+      Store Hours: Mon–Fri 10am–6pm
+    </small>
+  </footer>
+
+  <script>
+    function showSummary() {
+      const cpu = document.getElementById("cpu");
+      const gpu = document.getElementById("gpu");
+      const ram = document.getElementById("ram");
+      const storage = document.getElementById("storage");
+      const name = document.getElementById("userName").value;
+      const email = document.getElementById("userEmail").value;
+
+      const cpuVal = cpu.value;
+      const gpuVal = gpu.value;
+      const ramVal = ram.value;
+      const storageVal = storage.value;
+
+      const cpuPrice = parseInt(cpu.options[cpu.selectedIndex].dataset.price);
+      const gpuPrice = parseInt(gpu.options[gpu.selectedIndex].dataset.price);
+      const ramPrice = parseInt(ram.options[ram.selectedIndex].dataset.price);
+      const storagePrice = parseInt(storage.options[storage.selectedIndex].dataset.price);
+
+      const total = cpuPrice + gpuPrice + ramPrice + storagePrice;
+
+      let warning = '';
+      if ((cpuVal.includes('Intel') && ramVal.includes('DDR5')) || (cpuVal.includes('AMD') && ramVal.includes('DDR4'))) {
+        warning = '⚠️ Compatibility warning: The selected CPU may not fully support the selected RAM type.';
+      }
+
+      document.getElementById("summary").innerHTML = `
+        <h4>Your Configuration:</h4>
+        <ul>
+          <li><strong>CPU:</strong> ${cpuVal} ($${cpuPrice})</li>
+          <li><strong>GPU:</strong> ${gpuVal} ($${gpuPrice})</li>
+          <li><strong>RAM:</strong> ${ramVal} ($${ramPrice})</li>
+          <li><strong>Storage:</strong> ${storageVal} ($${storagePrice})</li>
+        </ul>
+        <h5>Total Estimated Price: $${total}</h5>
+        <p><strong>Name:</strong> ${name}<br><strong>Email:</strong> ${email}</p>
+      `;
+
+      document.getElementById("warning").innerText = warning;
+      document.getElementById("confirmation").innerText = `Thank you, ${name}! Your configuration has been received. We'll contact you at ${email}.`;
+    }
+  </script>
+</body>
+</html>
